@@ -1,0 +1,34 @@
+.header{
+    margin-top: 10px;
+}
+
+.headerTitles{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #7c7c7c;
+    font-family: 'Sriracha', cursive;
+}
+
+.headerTitleSm{
+    position: absolute;
+    top: 12.5%;
+    font-size: 26px;
+    text-decoration-line: underline;
+    color: gold;
+}
+
+.headerTitleLg{
+    position: absolute;
+    top: 8%;
+    font-size: 130px;
+    color: lightcoral;
+}
+
+.headerImg{
+    width: 100%;
+    height: 480;
+    margin-top: 100px;
+    box-shadow: inset 0px 0px 10px 10px rgba(255, 255, 255, 1);
+    object-fit: cover;
+}
