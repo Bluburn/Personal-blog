@@ -1,38 +1,55 @@
-import "./singlePost.css"
+import "./singlePost.css";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
+import "./singlePost.css";
 
 export default function SinglePost() {
-  return (
-    <div className="singlePost">
+    const location = useLocation()
+    const path = location.pathname.split("/")[2];
+    const [post, setPost] = useState({})
 
-        <div className="singlePostWrapper">
+    useEffect(()=>{
+        const getPost = async ()=>{
+            const res = await axios.get("/post/" + path)
+            console.log(res.data)
+        };
+    }, [path]);
 
-            <img src="https://i.pinimg.com/originals/a0/b4/3b/a0b43ba98494ae66509266dc8da916b6.jpg" 
-            alt="" className="singlePostImg"/>
+    return (
+        <div className="singlePost">
 
-            <h1 className="singlePostTitle">
-                Lorem ipsum dolor sit amet.
+            <div className="singlePostWrapper">
+                {post.photo &&(
+                <img 
+                src={post.photo}
+                alt="" 
+                className="singlePostImg"/>
+                )}
 
-                <div className="singlePostEdit">
-                    <i class="singlePostIcon fa-solid fa-pen-to-square"></i>
-                    <i class="singlePostIcon fa-solid fa-trash-can"></i>
+                <h1 className="singlePostTitle">
+                    {post.title}
+
+                    <div className="singlePostEdit">
+                        <i class="singlePostIcon fa-solid fa-pen-to-square"></i>
+                        <i class="singlePostIcon fa-solid fa-trash-can"></i>
+                    </div>
+                </h1>
+
+                <div className="singlePostInfo">
+
+                    <span className="singlePostAuthor">
+                        Author: 
+                        <Link to={`/?user=${post.username}`} className="link">
+                        <b>{post.username}</b>
+                        </Link>
+                    </span>
+                    <span className="singlePostDate">{new Date(post.createdAt).toDateString()}</span>
+
                 </div>
-            </h1>
 
-            <div className="singlePostInfo">
-
-                <span className="singlePostAuthor">
-                    Author: <b>Pearl</b>
-                </span>
-                <span className="singlePostDate">
-                    1 hours Ago
-                </span>
-
+                <p className="singlePostDesc">{post.desc}</p>
             </div>
-
-            <p className="singlePostDesc">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos, nobis iure facere natus veritatis quos beatae adipisci sunt iusto soluta voluptates ex corrupti consequatur enim itaque eaque aspernatur! Enim, facilis.
-            </p>
         </div>
-    </div>
-  )
+    )
 }
