@@ -1,10 +1,11 @@
 import "./navbar.css";
 import { Link } from 'react-router-dom';
-import { Context } from "../../context/Context"
+import { Context } from "../../context/Context";
 import { useContext } from "react";
 
 export default function Navbar() {
   const { user } = useContext(Context);
+  const PF = "http://localhost:5123/images/"
 
   const handleLogout = () =>{
     dispatch({ type: "LOGOUT"});
@@ -48,14 +49,14 @@ export default function Navbar() {
       </div>
 
       <div className="navRight">
-
-        {
-          user ? (
+        { user ? (
+            <Link to="/setting">
             <img className="topImg" 
-            src={user.profilePic} 
-            alt="" 
+              src={ PF + user.profilePic } 
+              alt="" 
             />
-          ) : (
+            </Link>
+            ) : (
             <ul className="navList">
               
               <li className="navListItem">

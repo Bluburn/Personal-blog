@@ -6,7 +6,9 @@ const authRouter = require("./routes/auth");
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGO_URL)
+mongoose.connect(process.env.MONGO_URL, {
+    useFindAndModify: true,
+})
     .then(console.log("Connected to MongoDbB"))
     .catch((err=cl) => console.log(err));
 

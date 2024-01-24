@@ -30,11 +30,11 @@ export default function Write() {
             const res = await axios.post("/posts", newPost);
             window.location.replace("/post/" + res.data._id);
           } catch (err) {}
-    };
+        };
     return (
         <div className="write">
             {file &&
-                <img 
+                <img  
                     className="writeImg" 
                     src={URL.createObjectURL(file)}
                     alt="" 

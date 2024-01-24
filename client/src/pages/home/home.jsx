@@ -12,7 +12,7 @@ export default function Home() {
 
   console.log(location);
 
-  /*useEffect(() => {
+  useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get("/posts + search");
       setPosts(res.data);
@@ -20,7 +20,7 @@ export default function Home() {
 
     };
     fetchPosts();
-  }, [search]);*/
+  }, [search]);
 return (
     <>
       <Header />
